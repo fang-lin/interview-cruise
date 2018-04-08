@@ -1,5 +1,5 @@
-import Component from './src/Component';
-import AgentsList from './src/AgentsList';
+import Component from './Component';
+import AgentsList from './AgentsList';
 import './styles.css';
 
 const agents = [{
