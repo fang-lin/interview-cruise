@@ -11,12 +11,16 @@
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "mocha": "^5.0.1",
-    "parcel-bundler": "^1.6.2"
+    "parcel-bundler": "^1.6.2",
+    "postcss": "^6.0.21"
   },
   "scripts": {
     "start": "parcel index.html -p 3030",
+    "build": "parcel build index.js",
     "dev": "parcel watch index.html",
-    "test": "mocha --require babel-register src/*.test.js",
-    "babel": "babel ./src/PropertyArray.js"
+    "test": "mocha --require babel-register src/*.test.js"
+  },
+  "devDependencies": {
+    "postcss-modules": "^1.1.0"
   }
 }

@@ -7,16 +7,16 @@ export default class Resource extends Component {
 
   componentDidMount() {
     const { removeResource, children } = this.props;
-    this.__DOM.addEventListener('click', event => {
+    this.__DOM.querySelector('.remove').addEventListener('click', event => {
       removeResource(children);
     });
   }
 
   render() {
     const { children } = this.props;
-    return `<div>
+    return `<div class="resource-item">
               <span>${children}</span>
-              <span>X</span>
+              <a class="remove">[X]</a>
             </div>`
   }
 }

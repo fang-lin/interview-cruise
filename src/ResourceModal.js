@@ -18,12 +18,11 @@ export default class ResourceModal extends Component {
   }
 
   render() {
-
-    return `<div>
+    return `<div class="resource-modal">
               <form>
-                <input type="text">
-                <input type="button" value="Cancel">
-                <input type="submit" value="Submit">
+                <input class="resource-modal-input" type="text">
+                <input class="resource-modal-button" type="button" value="Cancel">
+                <input class="resource-modal-button" type="submit" value="Submit">
               </form>
             </div>`
   }

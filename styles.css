@@ -1,0 +1,39 @@
+.agent-list {
+    padding: 10px;
+    list-style: none;
+    font-family: "SF Pro SC", "HanHei SC", "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "PingFang SC", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.agent {
+    background: #fff;
+    box-shadow: 0 1px 3px #333;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.agent-detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+.resources-list {
+    display: flex;
+    list-style: none;
+    margin: 0 -10px;
+    padding: 0;
+}
+
+.resource-item {
+    display: flex;
+    list-style: none;
+    margin: 0 10px;
+    padding: 0;
+}
+
+.remove {
+    cursor: pointer;
+}
+
+.remove:hover {
+    background: #999;
+}

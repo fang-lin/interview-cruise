@@ -6,15 +6,6 @@ export default class Component {
     this.children = [];
   }
 
-  setState(state) {
-    this.state = Object.assign(this.state, state);
-    const dom = document.querySelector(`[${Component.componentKeyName}="${this.componentKey}"]`);
-    if (dom) {
-      dom.outerHTML = this.createHTML();
-      // dom._componentDidMount();
-    }
-  }
-
   createHTML() {
     const html = this.render();
     const dom = (new DOMParser()).parseFromString(html, 'text/html').body.firstChild;

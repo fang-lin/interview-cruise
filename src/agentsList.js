@@ -9,6 +9,6 @@ export default class AgentsList extends Component {
 
   render() {
     const { agents } = this.props;
-    return `<ul>${Component.map(agents, agent => Agent.init({ agent }, null, this))}<ul>`;
+    return `<ul class="agent-list">${Component.map(agents, agent => Agent.init({ agent }, null, this))}<ul>`;
   }
 }

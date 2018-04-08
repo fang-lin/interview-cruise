@@ -1,5 +1,6 @@
 import Component from './src/Component';
 import AgentsList from './src/AgentsList';
+import './styles.css';
 
 const agents = [{
   domain: 'a01.thoughtworks.com',
