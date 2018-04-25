@@ -5,18 +5,11 @@ export default class Resource extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    const { removeResource, children } = this.props;
-    this.on('click', '.remove', event => {
-      removeResource(children);
-    });
-  }
-
   render() {
-    const { children } = this.props;
+    const { removeResource, children } = this.props;
     return `<div class="resource-item">
               <span>${children}</span>
-              <a class="remove">[X]</a>
+              <a click=${this.on(() => removeResource(children))}>[X]</a>
             </div>`
   }
 }

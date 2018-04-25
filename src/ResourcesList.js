@@ -16,7 +16,7 @@ export default class ResourcesList extends Component {
 
   render() {
     const { resources } = this.props;
-    const { removeResource, toggleModal, addResources } = this;
+    const { removeResource } = this;
 
     return `<ul class="resources-list">
               ${Component.map(resources, resource => Resource.init({ removeResource }, resource, this))}

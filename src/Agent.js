@@ -7,12 +7,6 @@ export default class Agent extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.on('click', '.add', event => {
-      this.toggleModal(true);
-    });
-  }
-
   addResources = (newResources) => {
     const { resources } = this.props.agent;
     newResources.forEach(resource => {
@@ -33,6 +27,7 @@ export default class Agent extends Component {
     const { toggleModal, addResources } = this;
     const { agent } = this.props;
     const { resources } = agent;
+
     return `<li class="agent">
                <div class="agent-detail">
                  <span>${agent.domain}</span>
@@ -41,7 +36,7 @@ export default class Agent extends Component {
                </div>
                <div>
                 ${ResourcesList.init({ resources }, null, this)}
-                <a class="add">+ Add Resource</a>
+                <a click=${this.on(() => this.toggleModal(true))}>+ Add Resource</a>
                 ${this.isOpenModal ? ResourceModal.init({ toggleModal, addResources }, null, this) : '' }
               </div>
            </li>`;
