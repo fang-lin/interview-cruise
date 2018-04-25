@@ -13,6 +13,20 @@ export default class Component {
     return dom.outerHTML;
   }
 
+  on(eventType, selector, handler) {
+
+    let dom;
+    if (typeof selector === 'function') {
+      handler = selector;
+      dom = this.__DOM;
+    } else {
+      dom = this.__DOM.querySelector(selector);
+    }
+
+    dom.addEventListener(eventType, handler);
+    return dom;
+  }
+
   componentDidMount() {
   }
 

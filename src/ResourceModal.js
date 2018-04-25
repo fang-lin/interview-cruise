@@ -8,7 +8,7 @@ export default class ResourceModal extends Component {
 
   componentDidMount() {
     const { toggleModal, addResources } = this.props;
-    this.__DOM.querySelector('form').addEventListener('submit', event => {
+    this.on('submit', 'form', event => {
       event.preventDefault();
       addResources(
         event.target[0].value.split(',')
@@ -16,14 +16,18 @@ export default class ResourceModal extends Component {
           .filter(resource => resource.length)
       );
     });
-    this.__DOM.querySelector('input[type="button"]').addEventListener('click', event => {
+    this.on('click', 'input[type="button"]', event => {
       toggleModal(false);
     });
   }
 
+  asdasda() {
+
+  }
+
   render() {
     return `<div class="resource-modal">
-              <form>
+              <form click="this.asdasda">
                 <input class="resource-modal-input" type="text">
                 <input class="resource-modal-button" type="button" value="Cancel">
                 <input class="resource-modal-button" type="submit" value="Submit">

@@ -8,7 +8,7 @@ export default class Agent extends Component {
   }
 
   componentDidMount() {
-    this.__DOM.querySelector('.add').addEventListener('click', event => {
+    this.on('click', '.add', event => {
       this.toggleModal(true);
     });
   }

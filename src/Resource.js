@@ -7,7 +7,7 @@ export default class Resource extends Component {
 
   componentDidMount() {
     const { removeResource, children } = this.props;
-    this.__DOM.querySelector('.remove').addEventListener('click', event => {
+    this.on('click', '.remove', event => {
       removeResource(children);
     });
   }
