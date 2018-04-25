@@ -5,11 +5,17 @@ export default class ResourceModal extends Component {
     super(props);
   }
 
+  static escapeResource(text) {
+    const node = document.createElement('span');
+    node.innerText = text;
+    return node.innerHTML;
+  }
+
   componentDidMount() {
     const { toggleModal, addResources } = this.props;
     this.__DOM.querySelector('form').addEventListener('submit', event => {
       event.preventDefault();
-      addResources(event.target[0].value.split(','));
+      addResources(event.target[0].value.split(',').map(resource => ResourceModal.escapeResource(resource)));
     });
     this.__DOM.querySelector('input[type="button"]').addEventListener('click', event => {
       toggleModal(false);
@@ -26,4 +32,6 @@ export default class ResourceModal extends Component {
             </div>`
   }
 }
+
+
 
