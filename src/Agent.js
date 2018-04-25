@@ -15,7 +15,11 @@ export default class Agent extends Component {
 
   addResources = (newResources) => {
     const { resources } = this.props.agent;
-    resources.splice(resources.length, 0, ...newResources);
+    newResources.forEach(resource => {
+      if (resources.indexOf(resource) === -1) {
+        resources.push(resource);
+      }
+    });
     this.isOpenModal = false;
     this.refresh();
   };
