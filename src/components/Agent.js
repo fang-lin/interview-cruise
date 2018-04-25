@@ -35,9 +35,9 @@ export default class Agent extends Component {
                  <span>${agent.path}</span>
                </div>
                <div>
-                ${ResourcesList.init({ resources }, null, this)}
-                <a click=${this.on(() => this.toggleModal(true))}>+ Add Resource</a>
-                ${this.isOpenModal ? ResourceModal.init({ toggleModal, addResources }, null, this) : '' }
+                  ${ResourcesList.init({ resources }, null, this)}
+                  <a click=${this.on(() => this.toggleModal(true))}>+ Add Resource</a>
+                  ${this.isOpenModal ? ResourceModal.init({ toggleModal, addResources }, null, this) : '' }
               </div>
            </li>`;
   }

@@ -1,12 +1,22 @@
-import Component from './Component';
-import AgentsList from './AgentsList';
+import Component from './components/Component';
+import App from './components/App';
 import './styles.css';
 
 const agents = [{
   domain: 'a01.thoughtworks.com',
   ip: '192.168.1.101',
   path: '/var/lib/cruise',
-  resources: ['Chrome', 'FireFox'],
+  resources: ['Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox',],
+}, {
+  domain: 'a01.thoughtworks.com',
+  ip: '192.168.1.101',
+  path: '/var/lib/cruise',
+  resources: ['Chrome', 'FireFox', 'Safari']
+}, {
+  domain: 'a01.thoughtworks.com',
+  ip: '192.168.1.101',
+  path: '/var/lib/cruise',
+  resources: ['Chrome', 'FireFox', 'Safari']
 }, {
   domain: 'a01.thoughtworks.com',
   ip: '192.168.1.101',
@@ -16,7 +26,7 @@ const agents = [{
 
 window.agents = agents;
 
-Component.renderToDOM(AgentsList.init({ agents }), document.querySelector('#root'));
+Component.renderToDOM(App.init({ agents }), document.querySelector('#root'));
 
 
 
