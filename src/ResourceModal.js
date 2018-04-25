@@ -9,7 +9,6 @@ export default class ResourceModal extends Component {
     const { toggleModal, addResources } = this.props;
     this.__DOM.querySelector('form').addEventListener('submit', event => {
       event.preventDefault();
-      console.dir();
       addResources(event.target[0].value.split(','));
     });
     this.__DOM.querySelector('input[type="button"]').addEventListener('click', event => {
