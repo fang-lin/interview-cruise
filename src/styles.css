@@ -32,23 +32,29 @@ footer {
     flex: 1;
 }
 
+.sidebar-wrapper {
+    width: 25%;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
 .sidebar {
-    width: 280px;
+    height: 100%;
     background: #069;
-    padding: 20px;
 }
 
 .main {
-    flex-grow: 1;
-    margin: 0 0 0 30px;
+    width: 75%;
+    padding: 0 16px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 .state-cards {
     display: flex;
-    margin: 16px -15px 8px -15px;
+    margin: 16px -16px 8px -16px;
 }
 
 .state-card {

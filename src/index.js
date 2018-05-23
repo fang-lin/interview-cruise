@@ -6,7 +6,7 @@ const agents = [{
   domain: 'a01.thoughtworks.com',
   ip: '192.168.1.101',
   path: '/var/lib/cruise',
-  resources: ['Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox','Chrome', 'FireFox',],
+  resources: ['Chrome', 'FireFox'],
 }, {
   domain: 'a01.thoughtworks.com',
   ip: '192.168.1.101',
@@ -27,7 +27,3 @@ const agents = [{
 window.agents = agents;
 
 Component.renderToDOM(App.init({ agents }), document.querySelector('#root'));
-
-
-
-

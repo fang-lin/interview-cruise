@@ -2,8 +2,10 @@ import Component from './Component';
 
 export default class SideBar extends Component {
   render() {
-    return `<aside class="sidebar">
-                SideBar
-           </aside>`;
+    return `<div class="sidebar-wrapper">
+                <aside class="sidebar">
+                    SideBar
+                </aside>
+           </div>`;
   }
 }
