@@ -1,3 +1,5 @@
+import { strip, mergeDOM } from '../utility';
+
 export default class Component {
   constructor(props = {}) {
     this.props = props;
@@ -7,35 +9,22 @@ export default class Component {
     this.__events = [];
   }
 
-  createHTML() {
-    this.__events = [];
-    const html = this.render().replace(Component.eventHandlerRegExp, (match, type, key) => {
-      this.__events[key].type = type;
-      return `${Component.eventKeyName}-${this.componentKey}-${key}`;
-    });
-
-    const dom = (new DOMParser()).parseFromString(html, 'text/html').body.firstChild;
-    dom.setAttribute(Component.componentKeyName, this.componentKey);
-    return dom.outerHTML;
-  }
-
   createNode() {
     this.__events = [];
     const html = this.render().replace(Component.eventHandlerRegExp, (match, type, key) => {
       this.__events[key].type = type;
-      return `${Component.eventKeyName}-${this.componentKey}-${key}`;
+      return `${Component.eventKeyName}_${this.componentKey}_${key}`;
     });
-
     const dom = (new DOMParser()).parseFromString(html, 'text/html').body.firstChild;
+    strip(dom);
     dom.setAttribute(Component.componentKeyName, this.componentKey);
     return dom;
   }
 
-
   on(handler) {
     const key = this.__events.length;
     this.__events.push({ handler });
-    return `"__event_handler__[${key}]"`;
+    return `"__event_handler__${this.componentKey}_${key}"`;
   }
 
   setState(newState) {
@@ -48,13 +37,19 @@ export default class Component {
 
   __refresh() {
     this.__DOM = document.querySelector(`[${Component.componentKeyName}="${this.componentKey}"]`);
-
+    if (this.__DOM.__component) {
+      this.__DOM.__component.__events.forEach((event, key) => {
+        const { type, handler } = event;
+        const target = this.__DOM.querySelector(`[${Component.eventKeyName}_${this.componentKey}_${key}]`);
+        target.removeEventListener(type, handler);
+      });
+    }
+    this.__DOM.__component = this;
     this.__events.forEach((event, key) => {
       const { type, handler } = event;
-      const target = document.querySelector(`[${Component.eventKeyName}-${this.componentKey}-${key}]`);
+      const target = this.__DOM.querySelector(`[${Component.eventKeyName}_${this.componentKey}_${key}]`);
       target.addEventListener(type, handler);
     });
-
     this.componentDidMount();
     this.children.map(child => child.__refresh());
   }
@@ -65,7 +60,7 @@ export default class Component {
 
   refresh() {
     this.children = [];
-    this.__DOM.outerHTML = this.createHTML();
+    mergeDOM(this.__DOM, this.createNode());
     this.__refresh();
   }
 
@@ -83,7 +78,7 @@ export default class Component {
     } else {
       Component.__rootComponent = newComponent;
     }
-    return newComponent.createHTML();
+    return newComponent.createNode().outerHTML;
   }
 
   static map(list, callback) {
@@ -95,5 +90,4 @@ Component.componentKeyCount = 0;
 Component.componentKeyName = 'component-key';
 Component.eventKeyName = 'event-key';
 Component.eventTypes = 'submit|change|click';
-Component.eventHandlerRegExp = new RegExp(`(${Component.eventTypes})="__event_handler__\\[(\\d+)\\]"`, 'g');
-
+Component.eventHandlerRegExp = new RegExp(`(${Component.eventTypes})="__event_handler__[-\\d]+_(\\d+)"`, 'g');
