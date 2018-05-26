@@ -2,10 +2,6 @@ import Component from './Component';
 import Resource from './Resource';
 
 export default class ResourcesList extends Component {
-  constructor(props) {
-    super(props);
-    this.isOpenModal = false;
-  }
 
   removeResource = (name) => {
     const { resources } = this.props;

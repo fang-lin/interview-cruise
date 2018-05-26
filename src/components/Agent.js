@@ -3,8 +3,12 @@ import ResourcesList from './ResourcesList';
 import ResourceModal from "./ResourceModal";
 
 export default class Agent extends Component {
+
   constructor(props) {
     super(props);
+    this.state = {
+      isOpenModal: false
+    };
   }
 
   addResources = (newResources) => {
@@ -14,14 +18,10 @@ export default class Agent extends Component {
         resources.push(resource);
       }
     });
-    this.isOpenModal = false;
-    this.refresh();
+    this.setState({ isOpenModal: false });
   };
 
-  toggleModal = (state) => {
-    this.isOpenModal = state;
-    this.refresh();
-  };
+  toggleModal = isOpen => this.setState({ isOpenModal: isOpen });
 
   render() {
     const { toggleModal, addResources } = this;
@@ -36,8 +36,8 @@ export default class Agent extends Component {
                </div>
                <div>
                   ${ResourcesList.init({ resources }, null, this)}
-                  <a click=${this.on(() => this.toggleModal(true))}>+ Add Resource</a>
-                  ${this.isOpenModal ? ResourceModal.init({ toggleModal, addResources }, null, this) : '' }
+                  <a click=${this.on(() => this.setState({ isOpenModal: true }))}>+ Add Resource</a>
+                  ${this.state.isOpenModal ? ResourceModal.init({ toggleModal, addResources }, null, this) : '' }
               </div>
            </li>`;
   }

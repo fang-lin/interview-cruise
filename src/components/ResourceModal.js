@@ -2,9 +2,6 @@ import Component from './Component';
 import { escapeHTML, trim } from '../utility';
 
 export default class ResourceModal extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   onSubmitForm = event => {
     event.preventDefault();

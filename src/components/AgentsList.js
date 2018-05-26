@@ -2,10 +2,6 @@ import Component from './Component';
 import Agent from './Agent';
 
 export default class AgentsList extends Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   render() {
     const { agents } = this.props;

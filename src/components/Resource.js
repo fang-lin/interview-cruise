@@ -1,9 +1,6 @@
 import Component from './Component';
 
 export default class Resource extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { removeResource, children } = this.props;
