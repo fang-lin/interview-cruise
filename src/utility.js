@@ -10,7 +10,7 @@ export const strip = (node) => {
   for (let i = 0; i < node.childNodes.length; i++) {
     let child = node.childNodes[i];
     if (child.nodeType === 8 || (child.nodeType === 3 && !/\S/.test(child.nodeValue))) {
-      const s = node.removeChild(child);
+      node.removeChild(child);
       i--;
     } else if (child.nodeType === 1) {
       strip(child);
@@ -28,8 +28,8 @@ export function mergeDOM(prevNode, nextNode) {
     } else {
       const prevNodeClone = prevNode.cloneNode(true);
       const nextNodeClone = nextNode.cloneNode(true);
-      prevNodeClone.innerText = '';
-      nextNodeClone.innerText = '';
+      prevNodeClone.innerHTML = '';
+      nextNodeClone.innerHTML = '';
 
       if (prevNodeClone.outerHTML === nextNodeClone.outerHTML) {
         const prevChildrenCount = prevNode.children.length;

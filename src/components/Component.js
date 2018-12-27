@@ -7,11 +7,14 @@ export default class Component {
     this.componentKey = '0';
     this.children = [];
     this.__events = [];
+    this.__deposedEvents = [];
   }
 
   createNode() {
+    this.__deposedEvents = this.__events;
     this.__events = [];
     const html = this.render().replace(Component.eventHandlerRegExp, (match, type, key) => {
+      console.log('key', key);
       this.__events[key].type = type;
       return `${Component.eventKeyName}_${this.componentKey}_${key}`;
     });
@@ -37,14 +40,14 @@ export default class Component {
 
   __refresh() {
     this.__DOM = document.querySelector(`[${Component.componentKeyName}="${this.componentKey}"]`);
+
     if (this.__DOM.__component) {
-      this.__DOM.__component.__events.forEach((event, key) => {
-        const { type, handler } = event;
-        const target = this.__DOM.querySelector(`[${Component.eventKeyName}_${this.componentKey}_${key}]`);
-        target.removeEventListener(type, handler);
-      });
+      Component.removeEvents(this.__DOM.__component, this.__DOM.__component.__events);
     }
+    Component.removeEvents(this, this.__deposedEvents);
+    this.__deposedEvents = [];
     this.__DOM.__component = this;
+
     this.__events.forEach((event, key) => {
       const { type, handler } = event;
       const target = this.__DOM.querySelector(`[${Component.eventKeyName}_${this.componentKey}_${key}]`);
@@ -83,6 +86,14 @@ export default class Component {
 
   static map(list, callback) {
     return list.map(item => callback(item)).join('');
+  }
+
+  static removeEvents(component, events) {
+    events.forEach((event, key) => {
+      const { type, handler } = event;
+      const target = component.__DOM.querySelector(`[${Component.eventKeyName}_${component.componentKey}_${key}]`);
+      target.removeEventListener(type, handler);
+    });
   }
 }
 

@@ -22,6 +22,16 @@ const agents = [{
   ip: '192.168.1.101',
   path: '/var/lib/cruise',
   resources: ['Chrome', 'FireFox', 'Safari']
+}, {
+  domain: 'a01.thoughtworks.com',
+  ip: '192.168.1.101',
+  path: '/var/lib/cruise',
+  resources: ['Chrome', 'FireFox', 'Safari']
+}, {
+  domain: 'a01.thoughtworks.com',
+  ip: '192.168.1.101',
+  path: '/var/lib/cruise',
+  resources: ['Chrome', 'FireFox', 'Safari']
 }];
 
 window.agents = agents;
