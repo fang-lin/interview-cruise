@@ -14,7 +14,6 @@ export default class Component {
     this.__deposedEvents = this.__events;
     this.__events = [];
     const html = this.render().replace(Component.eventHandlerRegExp, (match, type, key) => {
-      console.log('key', key);
       this.__events[key].type = type;
       return `${Component.eventKeyName}_${this.componentKey}_${key}`;
     });
@@ -85,7 +84,7 @@ export default class Component {
   }
 
   static map(list, callback) {
-    return list.map(item => callback(item)).join('');
+    return list.map((item, index) => callback(item, index)).join('');
   }
 
   static removeEvents(component, events) {

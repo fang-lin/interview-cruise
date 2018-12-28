@@ -1,14 +1,12 @@
 import Component from './Component';
 import ResourcesList from './ResourcesList';
 import ResourceModal from "./ResourceModal";
+import './Agent.css';
 
 export default class Agent extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      isOpenModal: false
-    };
   }
 
   addResources = (newResources) => {
@@ -18,14 +16,18 @@ export default class Agent extends Component {
         resources.push(resource);
       }
     });
-    this.setState({ isOpenModal: false });
+    this.props.openedAddResourceModalIndex = -1;
+    this.refresh();
   };
 
-  toggleModal = isOpen => this.setState({ isOpenModal: isOpen });
-
   render() {
-    const { toggleModal, addResources } = this;
-    const { agent } = this.props;
+    const { addResources } = this;
+    const {
+      agent, index,
+      openedAddResourceModalIndex,
+      openModal,
+      closeModal
+    } = this.props;
     const { resources } = agent;
 
     return `<li class="agent">
@@ -36,8 +38,13 @@ export default class Agent extends Component {
                </div>
                <div>
                   ${ResourcesList.init({ resources }, null, this)}
-                  <a click=${this.on(() => this.setState({ isOpenModal: true }))}>+ Add Resource</a>
-                  ${this.state.isOpenModal ? ResourceModal.init({ toggleModal, addResources }, null, this) : '' }
+                  <div class="add-resource-wrapper">
+                    <a click=${this.on(() => openModal(index))}>+ Add Resource</a>
+                    ${(index === openedAddResourceModalIndex) ? ResourceModal.init({
+                      closeModal,
+                      addResources
+                    }, null, this) : '' }
+                  </div>
               </div>
            </li>`;
   }

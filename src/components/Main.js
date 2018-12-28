@@ -6,7 +6,7 @@ import AgentsList from './AgentsList';
 
 export default class Main extends Component {
   render() {
-    const { agents } = this.props;
+    const { agents, openedAddResourceModalIndex } = this.props;
     return `<div class="main">
                 <div class="state-cards">
                     ${StateCard.init({}, 'Building', this)}
@@ -15,7 +15,7 @@ export default class Main extends Component {
                 </div>
                 ${ToolBar.init({}, null, this)}
                 <div class="agent-list-wrapper">
-                    ${AgentsList.init({ agents }, null, this)}
+                    ${AgentsList.init({ agents, openedAddResourceModalIndex }, null, this)}
                 </div>
            </div>`;
   }

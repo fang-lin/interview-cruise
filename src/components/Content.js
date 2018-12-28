@@ -4,10 +4,10 @@ import Main from './Main';
 
 export default class Content extends Component {
   render() {
-    const { agents } = this.props;
+    const { agents, openedAddResourceModalIndex } = this.props;
     return `<article class="content">
                ${SideBar.init({}, null, this)}
-               ${Main.init({ agents }, null, this)}
+               ${Main.init({ agents, openedAddResourceModalIndex }, null, this)}
            </article>`;
   }
 }

@@ -1,5 +1,6 @@
 import Component from './Component';
 import { escapeHTML, trim } from '../utility';
+import './ResourceModal.css';
 
 export default class ResourceModal extends Component {
 
@@ -13,13 +14,16 @@ export default class ResourceModal extends Component {
   };
 
   render() {
-    const { toggleModal } = this.props;
-    return `<div class="resource-modal">
-              <form submit=${this.on(this.onSubmitForm)}>
-                <input class="resource-modal-input" type="text">
-                <input class="resource-modal-button" type="button" value="Cancel" click=${this.on(() => toggleModal(false))}>
-                <input class="resource-modal-button" type="submit" value="Submit">
-              </form>
-            </div>`;
+    const { closeModal } = this.props;
+    return `<div>
+              <div class="resource-modal-background" click=${this.on(closeModal)}></div>
+              <div class="resource-modal">
+                <form submit=${this.on(this.onSubmitForm)}>
+                  <input class="resource-modal-input" type="text">
+                  <input class="resource-modal-button" type="button" value="Cancel" click=${this.on(closeModal)}>
+                  <input class="resource-modal-button" type="submit" value="Submit">
+                </form>
+              </div>
+           </div>`;
   }
 }

@@ -36,4 +36,7 @@ const agents = [{
 
 window.agents = agents;
 
-Component.renderToDOM(App.init({ agents }), document.querySelector('#root'));
+Component.renderToDOM(App.init({
+  agents,
+  openedAddResourceModalIndex: -1
+}), document.querySelector('#root'));

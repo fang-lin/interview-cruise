@@ -84,26 +84,6 @@ footer {
     margin: 0;
 }
 
-.agent {
-    background: #fff;
-    padding: 20px;
-    margin: 16px 0;
-}
-
-.agent:first-child {
-    margin-top: 0;
-}
-
-.agent:last-child {
-    margin-bottom: 0;
-}
-
-.agent-detail {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
 .resource-modal {
     position: absolute;
     background: #fff;
